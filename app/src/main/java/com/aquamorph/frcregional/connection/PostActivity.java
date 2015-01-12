@@ -14,9 +14,6 @@ import com.google.gson.GsonBuilder;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.StatusLine;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -75,13 +72,8 @@ public class PostActivity extends Activity {
         @Override
         protected String doInBackground(Void... params) {
             try {
-                //Connects to the Blue Alliance
-                HttpClient client = new DefaultHttpClient();
-                HttpGet httpGet = new HttpGet(Constants.getEventURL("2059"));
-                httpGet.addHeader("X-TBA-App-Id", Constants.HEADER);
-
                 //Checks for valid connection
-                HttpResponse response = client.execute(httpGet);
+                HttpResponse response = Http.getRequest(Constants.getEventURL("2059"));
                 StatusLine statusLine = response.getStatusLine();
                 if (statusLine.getStatusCode() == 200) {
                     HttpEntity entity = response.getEntity();
