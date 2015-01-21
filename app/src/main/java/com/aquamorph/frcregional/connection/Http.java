@@ -1,5 +1,7 @@
 package com.aquamorph.frcregional.connection;
 
+import android.util.Log;
+
 import com.aquamorph.frcregional.Constants;
 
 import org.apache.http.HttpResponse;
@@ -11,6 +13,8 @@ import java.io.IOException;
 
 public class Http {
 
+    static String LOG = "Http";
+
     public static HttpResponse getRequest(String url) {
         try {
             //Connects to the Blue Alliance
@@ -19,6 +23,7 @@ public class Http {
             httpGet.addHeader("X-TBA-App-Id", Constants.HEADER);
             return client.execute(httpGet);
         } catch (IOException e) {
+            Log.e(LOG,"Failed connection: " + e);
             e.printStackTrace();
             return null;
         }

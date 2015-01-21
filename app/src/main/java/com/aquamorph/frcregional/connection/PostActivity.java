@@ -1,29 +1,10 @@
 package com.aquamorph.frcregional.connection;
 
 import android.app.Activity;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.view.Menu;
-import android.widget.Toast;
-
-import com.aquamorph.frcregional.Constants;
-import com.aquamorph.frcregional.R;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.StatusLine;
-
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class PostActivity extends Activity {
 
+    /*
     private List<EventLists> eventListses;
 
     @Override
@@ -47,15 +28,7 @@ public class PostActivity extends Activity {
 
 
 
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                for (EventLists eventLists : PostActivity.this.eventListses) {
-                    Toast.makeText(PostActivity.this, eventLists.event_code, Toast.LENGTH_SHORT).show();
-                    Toast.makeText(PostActivity.this, eventLists.name, Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+
     }
 
     private void failedLoad(final String error, final Exception ex) {
@@ -89,7 +62,12 @@ public class PostActivity extends Activity {
                         eventListses = Arrays.asList(gson.fromJson(reader, EventLists[].class));
                         content.close();
 
-                        handlePostsList(eventListses);
+                                                       for (EventLists eventLists : PostActivity.this.eventListses) {
+                                    Toast.makeText(PostActivity.this, eventLists.event_code, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(PostActivity.this, eventLists.name, Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                     } catch (Exception ex) {
                         failedLoad("Failed to parse JSON due to: ",ex);
                     }
@@ -101,5 +79,5 @@ public class PostActivity extends Activity {
             }
             return null;
         }
-    }
+    }*/
 }
