@@ -20,7 +20,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add"
+                android:text="Display"
                 android:id="@+id/button" />
 
             <Button
@@ -29,20 +29,12 @@
                 android:text="Clear"
                 android:id="@+id/button2" />
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Display"
-                android:id="@+id/button3" />
-
         </LinearLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="427dp"
-            android:text="New Text"
-            android:id="@+id/textView"
-            android:layout_gravity="bottom" />
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/listView" />
 
     </LinearLayout>
 

@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-public class DBAdapter {
+public class EventAdapter {
 
     /////////////////////////////////////////////////////////////////////
     //	Constants & Data
@@ -21,8 +21,7 @@ public class DBAdapter {
 
     // TODO: Setup your fields here:
     public static final String KEY_NAME = "name";
-    public static final String KEY_STUDENTNUM = "studentnum";
-    public static final String KEY_FAVCOLOUR = "favcolour";
+    public static final String KEY_EVENTID = "eventid";
 
     // TODO: Setup your field numbers here (0 = KEY_ROWID, 1=...)
     public static final int COL_NAME = 1;
@@ -30,33 +29,19 @@ public class DBAdapter {
     public static final int COL_FAVCOLOUR = 3;
 
 
-    public static final String[] ALL_KEYS = new String[] {KEY_ROWID, KEY_NAME, KEY_STUDENTNUM, KEY_FAVCOLOUR};
+    public static final String[] ALL_KEYS = new String[] {KEY_ROWID, KEY_NAME, KEY_EVENTID};
 
     // DB info: it's name, and the table we are using (just one).
-    public static final String DATABASE_NAME = "MyDb";
-    public static final String DATABASE_TABLE = "mainTable";
+    public static final String DATABASE_NAME = "FRCRegional";
+    public static final String DATABASE_TABLE = "events";
     // Track DB version if a new version of your app changes the format.
-    public static final int DATABASE_VERSION = 3;
+    public static final int DATABASE_VERSION = 5;
 
     private static final String DATABASE_CREATE_SQL =
             "create table " + DATABASE_TABLE
                     + " (" + KEY_ROWID + " integer primary key autoincrement, "
-			
-			/*
-			 * CHANGE 2:
-			 */
-                    // TODO: Place your fields here!
-                    // + KEY_{...} + " {type} not null"
-                    //	- Key is the column name you created above.
-                    //	- {type} is one of: text, integer, real, blob
-                    //		(http://www.sqlite.org/datatype3.html)
-                    //  - "not null" means it is a required field (must be given a value).
-                    // NOTE: All must be comma separated (end of line!) Last one must have NO comma!!
                     + KEY_NAME + " text not null, "
-                    + KEY_STUDENTNUM + " integer not null, "
-                    + KEY_FAVCOLOUR + " string not null"
-
-                    // Rest  of creation:
+                    + KEY_EVENTID + " string not null"
                     + ");";
 
     // Context of application who uses us.
@@ -69,13 +54,13 @@ public class DBAdapter {
     //	Public methods:
     /////////////////////////////////////////////////////////////////////
 
-    public DBAdapter(Context ctx) {
+    public EventAdapter(Context ctx) {
         this.context = ctx;
         myDBHelper = new DatabaseHelper(context);
     }
 
     // Open the database connection.
-    public DBAdapter open() {
+    public EventAdapter open() {
         db = myDBHelper.getWritableDatabase();
         return this;
     }
@@ -86,17 +71,11 @@ public class DBAdapter {
     }
 
     // Add a new set of values to the database.
-    public long insertRow(String name, int studentNum, String favColour) {
-		/*
-		 * CHANGE 3:
-		 */
-        // TODO: Update data in the row with new fields.
-        // TODO: Also change the function's arguments to be what you need!
+    public long insertRow(String name, String favColour) {
         // Create row's data:
         ContentValues initialValues = new ContentValues();
         initialValues.put(KEY_NAME, name);
-        initialValues.put(KEY_STUDENTNUM, studentNum);
-        initialValues.put(KEY_FAVCOLOUR, favColour);
+        initialValues.put(KEY_EVENTID, favColour);
 
         // Insert it into the database.
         return db.insert(DATABASE_TABLE, null, initialValues);
@@ -145,16 +124,10 @@ public class DBAdapter {
     public boolean updateRow(long rowId, String name, int studentNum, String favColour) {
         String where = KEY_ROWID + "=" + rowId;
 
-		/*
-		 * CHANGE 4:
-		 */
-        // TODO: Update data in the row with new fields.
-        // TODO: Also change the function's arguments to be what you need!
         // Create row's data:
         ContentValues newValues = new ContentValues();
         newValues.put(KEY_NAME, name);
-        newValues.put(KEY_STUDENTNUM, studentNum);
-        newValues.put(KEY_FAVCOLOUR, favColour);
+        newValues.put(KEY_EVENTID, favColour);
 
         // Insert it into the database.
         return db.update(DATABASE_TABLE, newValues, where, null) != 0;

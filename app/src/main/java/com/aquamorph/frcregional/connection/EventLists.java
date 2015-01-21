@@ -5,7 +5,7 @@ public class EventLists {
     public String name;
     public String event_code;
 
-    public long getId() {
+    /*public long getId() {
         return id;
     }
 
@@ -27,5 +27,5 @@ public class EventLists {
 
     public void setId(long id) {
         this.id  = id;
-    }
+    }*/
 }
