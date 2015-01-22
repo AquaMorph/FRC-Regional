@@ -1,11 +1,11 @@
-package com.aquamorph.frcregional.connection;
+package com.aquamorph.frcregional.network;
 
 public class EventLists {
     public long id;
     public String name;
     public String event_code;
 
-    /*public long getId() {
+    public long getId() {
         return id;
     }
 
@@ -27,5 +27,5 @@ public class EventLists {
 
     public void setId(long id) {
         this.id  = id;
-    }*/
+    }
 }

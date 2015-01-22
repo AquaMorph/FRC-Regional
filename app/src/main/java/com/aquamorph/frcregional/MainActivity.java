@@ -1,8 +1,8 @@
 package com.aquamorph.frcregional;
 
 import android.app.Activity;
+import android.content.res.Configuration;
 import android.database.Cursor;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,36 +11,20 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
-import com.aquamorph.frcregional.connection.EventLists;
-import com.aquamorph.frcregional.connection.Http;
 import com.aquamorph.frcregional.database.EventAdapter;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.StatusLine;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import com.aquamorph.frcregional.network.PostFetcher;
 
 
 public class MainActivity extends Activity {
 
     EventAdapter myDB;
-    private List<EventLists> eventListses;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        PostFetcher fetcher = new PostFetcher();
+        PostFetcher fetcher = new PostFetcher(this);
         fetcher.execute();
 
         Button button1 = (Button) findViewById(R.id.button);
@@ -65,7 +49,11 @@ public class MainActivity extends Activity {
         populateListViewFromDB();
     }
 
-
+    //Prevents restart from screen rotation
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+    }
 
     private void populateListViewFromDB() {
         Cursor cursor = myDB.getAllRows();
@@ -123,11 +111,11 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    private class PostFetcher extends AsyncTask<Void, Void, String> {
+    /*private class PostFetcher extends AsyncTask<Void, Void, String> {
         @Override
         protected String doInBackground(Void... params) {
             //Checks for valid connection
-            HttpResponse response = Http.getRequest(Constants.getEventURL("2059"));
+            HttpResponse response = Http.getRequest(Constants.getEventURL(Constants.TEAM));
             StatusLine statusLine = response.getStatusLine();
             if (statusLine.getStatusCode() == 200) {
                 HttpEntity entity = response.getEntity();
@@ -151,13 +139,13 @@ public class MainActivity extends Activity {
                     e.printStackTrace();
                 }
 
+                myDB.deleteAll();
+
                 for (EventLists eventLists : MainActivity.this.eventListses) {
                     myDB.insertRow(eventLists.name, eventLists.event_code);
-                    //Toast.makeText(MainActivity.this, eventLists.event_code, Toast.LENGTH_SHORT).show();
-                    //Toast.makeText(MainActivity.this, eventLists.name, Toast.LENGTH_SHORT).show();
                 }
             }
             return null;
         }
-    }
+    }*/
 }

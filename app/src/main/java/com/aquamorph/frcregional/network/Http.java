@@ -1,4 +1,4 @@
-package com.aquamorph.frcregional.connection;
+package com.aquamorph.frcregional.network;
 
 import android.util.Log;
 
