@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 
 import com.aquamorph.frcregional.Constants;
 import com.aquamorph.frcregional.database.EventAdapter;
+import com.aquamorph.frcregional.models.EventLists;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -57,15 +58,15 @@ public  class PostFetcher extends AsyncTask<Void, Void, String> {
                 e.printStackTrace();
             }
 
-            myDB = new EventAdapter(mContext);
-            myDB.open();
+            //myDB = new EventAdapter(mContext);
+            //myDB.open();
 
-            myDB.deleteAll();
+            //myDB.deleteAll();
 
             for (EventLists eventLists : PostFetcher.this.eventListses) {
-               myDB.insertRow(eventLists.name, eventLists.event_code);
+               //myDB.insertRow(eventLists.name, eventLists.event_code, eventLists.end_date);
             }
-            myDB.close();
+            //myDB.close();
 
         }
         return null;

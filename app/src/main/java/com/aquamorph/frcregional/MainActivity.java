@@ -55,15 +55,15 @@ public class MainActivity extends Activity {
         super.onConfigurationChanged(newConfig);
     }
 
-    private void populateListViewFromDB() {
+    public void populateListViewFromDB() {
         Cursor cursor = myDB.getAllRows();
 
         //Allow activity to close activity
         startManagingCursor(cursor);
 
         //Set up mapping cursor to view fields
-        String[] fromfieldName = new String[] {EventAdapter.KEY_NAME, EventAdapter.KEY_EVENTID};
-        int[] toviewIDs = new int[] {R.id.eventName,R.id.eventID};
+        String[] fromfieldName = new String[] {EventAdapter.KEY_NAME, EventAdapter.KEY_EVENTID, EventAdapter.KEY_ENDDATE};
+        int[] toviewIDs = new int[] {R.id.eventName,R.id.eventID,R.id.eventDate};
 
         //Create apter to map database listview
         SimpleCursorAdapter myCursorAdapter = new SimpleCursorAdapter(this,
@@ -110,42 +110,4 @@ public class MainActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
-
-    /*private class PostFetcher extends AsyncTask<Void, Void, String> {
-        @Override
-        protected String doInBackground(Void... params) {
-            //Checks for valid connection
-            HttpResponse response = Http.getRequest(Constants.getEventURL(Constants.TEAM));
-            StatusLine statusLine = response.getStatusLine();
-            if (statusLine.getStatusCode() == 200) {
-                HttpEntity entity = response.getEntity();
-                InputStream content = null;
-                try {
-                    content = entity.getContent();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                //Parse it as JSON
-                Reader reader = new InputStreamReader(content);
-
-                GsonBuilder gsonBuilder = new GsonBuilder();
-                Gson gson = gsonBuilder.create();
-                eventListses = new ArrayList<EventLists>();
-                eventListses = Arrays.asList(gson.fromJson(reader, EventLists[].class));
-                try {
-                    content.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                myDB.deleteAll();
-
-                for (EventLists eventLists : MainActivity.this.eventListses) {
-                    myDB.insertRow(eventLists.name, eventLists.event_code);
-                }
-            }
-            return null;
-        }
-    }*/
 }

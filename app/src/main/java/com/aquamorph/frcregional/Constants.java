@@ -9,6 +9,26 @@ public class Constants {
     public static final String TEAM = "2059";
 
     public static String getEventURL(String team) {
-        return URL + "team/frc" + team + "/"+YEAR+"/events";
+        return URL + "team/frc" + team + "/" + YEAR + "/events";
+    }
+
+    public static String getEventTeamMatches(String team, String event) {
+        return URL + "/team/" + team + "/event/" + YEAR + event + "/matches";
+    }
+
+    public static String getEventMatches(String event) {
+        return URL + "/event/" + YEAR + event + "/matches";
+    }
+
+    public static String getEventStats(String event) {
+        return URL + "/event/" + YEAR + event + "/stats";
+    }
+
+    public static String getEventRanks(String event) {
+        return URL + "event/" + YEAR + event + "/rankings";
+    }
+
+    public static String getEventAwards(String event) {
+        return URL + "event/" + YEAR + event + "/awards";
     }
 }

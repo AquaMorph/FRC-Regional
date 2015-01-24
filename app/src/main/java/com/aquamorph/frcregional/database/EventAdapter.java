@@ -9,10 +9,6 @@ import android.util.Log;
 
 public class EventAdapter {
 
-    /////////////////////////////////////////////////////////////////////
-    //	Constants & Data
-    /////////////////////////////////////////////////////////////////////
-    // For logging:
     private static final String TAG = "DBAdapter";
 
     // DB Fields
@@ -22,26 +18,28 @@ public class EventAdapter {
     // TODO: Setup your fields here:
     public static final String KEY_NAME = "name";
     public static final String KEY_EVENTID = "eventid";
+    public static final String KEY_ENDDATE = "enddate";
 
-    // TODO: Setup your field numbers here (0 = KEY_ROWID, 1=...)
     public static final int COL_NAME = 1;
     public static final int COL_STUDENTNUM = 2;
     public static final int COL_FAVCOLOUR = 3;
+    public static final int COL_ENDDATE = 4;
 
 
-    public static final String[] ALL_KEYS = new String[] {KEY_ROWID, KEY_NAME, KEY_EVENTID};
+    public static final String[] ALL_KEYS = new String[] {KEY_ROWID, KEY_NAME, KEY_EVENTID, KEY_ENDDATE};
 
-    // DB info: it's name, and the table we are using (just one).
+    // Set Database info
     public static final String DATABASE_NAME = "FRCRegional";
     public static final String DATABASE_TABLE = "events";
     // Track DB version if a new version of your app changes the format.
-    public static final int DATABASE_VERSION = 5;
+    public static final int DATABASE_VERSION = 7;
 
     private static final String DATABASE_CREATE_SQL =
             "create table " + DATABASE_TABLE
                     + " (" + KEY_ROWID + " integer primary key autoincrement, "
                     + KEY_NAME + " text not null, "
-                    + KEY_EVENTID + " string not null"
+                    + KEY_EVENTID + " string not null, "
+                    + KEY_ENDDATE + " string not null, "
                     + ");";
 
     // Context of application who uses us.
@@ -49,10 +47,6 @@ public class EventAdapter {
 
     private DatabaseHelper myDBHelper;
     private SQLiteDatabase db;
-
-    /////////////////////////////////////////////////////////////////////
-    //	Public methods:
-    /////////////////////////////////////////////////////////////////////
 
     public EventAdapter(Context ctx) {
         this.context = ctx;
@@ -71,11 +65,12 @@ public class EventAdapter {
     }
 
     // Add a new set of values to the database.
-    public long insertRow(String name, String favColour) {
+    public long insertRow(String name, String eventID, String endDate) {
         // Create row's data:
         ContentValues initialValues = new ContentValues();
         initialValues.put(KEY_NAME, name);
-        initialValues.put(KEY_EVENTID, favColour);
+        initialValues.put(KEY_EVENTID, eventID);
+        initialValues.put(KEY_ENDDATE, endDate);
 
         // Insert it into the database.
         return db.insert(DATABASE_TABLE, null, initialValues);
@@ -121,28 +116,19 @@ public class EventAdapter {
     }
 
     // Change an existing row to be equal to new data.
-    public boolean updateRow(long rowId, String name, int studentNum, String favColour) {
+    public boolean updateRow(long rowId, String name, String eventID, String endDate) {
         String where = KEY_ROWID + "=" + rowId;
 
         // Create row's data:
         ContentValues newValues = new ContentValues();
         newValues.put(KEY_NAME, name);
-        newValues.put(KEY_EVENTID, favColour);
+        newValues.put(KEY_EVENTID, eventID);
+        newValues.put(KEY_ENDDATE, endDate);
 
         // Insert it into the database.
         return db.update(DATABASE_TABLE, newValues, where, null) != 0;
     }
 
-
-
-    /////////////////////////////////////////////////////////////////////
-    //	Private Helper Classes:
-    /////////////////////////////////////////////////////////////////////
-
-    /**
-     * Private class which handles database creation and upgrading.
-     * Used to handle low-level database access.
-     */
     private static class DatabaseHelper extends SQLiteOpenHelper
     {
         DatabaseHelper(Context context) {

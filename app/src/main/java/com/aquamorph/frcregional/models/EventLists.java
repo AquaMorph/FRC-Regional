@@ -1,9 +1,10 @@
-package com.aquamorph.frcregional.network;
+package com.aquamorph.frcregional.models;
 
 public class EventLists {
     public long id;
     public String name;
     public String event_code;
+    public String end_date;
 
     public long getId() {
         return id;
