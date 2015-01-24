@@ -15,11 +15,12 @@ public class EventAdapter {
     public static final String KEY_ROWID = "_id";
     public static final int COL_ROWID = 0;
 
-    // TODO: Setup your fields here:
+    // Database Columns
     public static final String KEY_NAME = "name";
     public static final String KEY_EVENTID = "eventid";
     public static final String KEY_ENDDATE = "enddate";
 
+    // Database Column ID Numbers
     public static final int COL_NAME = 1;
     public static final int COL_EVENTID = 2;
     public static final int COL_ENDDATE = 3;
@@ -27,10 +28,9 @@ public class EventAdapter {
 
     public static final String[] ALL_KEYS = new String[] {KEY_ROWID, KEY_NAME, KEY_EVENTID, KEY_ENDDATE};
 
-    // Set Database info
+    // Set Database Info
     public static final String DATABASE_NAME = "FRCRegional";
     public static final String DATABASE_TABLE = "events";
-    // Track DB version if a new version of your app changes the format.
     public static final int DATABASE_VERSION = 9;
 
     private static final String DATABASE_CREATE_SQL =
@@ -41,9 +41,7 @@ public class EventAdapter {
                     + KEY_ENDDATE + " string not null "
                     + ");";
 
-    // Context of application who uses us.
     private final Context context;
-
     private DatabaseHelper myDBHelper;
     private SQLiteDatabase db;
 
@@ -52,18 +50,18 @@ public class EventAdapter {
         myDBHelper = new DatabaseHelper(context);
     }
 
-    // Open the database connection.
+    // Open Database Connection
     public EventAdapter open() {
         db = myDBHelper.getWritableDatabase();
         return this;
     }
 
-    // Close the database connection.
+    // Close Database Connection
     public void close() {
         myDBHelper.close();
     }
 
-    // Add a new set of values to the database.
+    // Add a new set of values to the database
     public long insertRow(String name, String eventID, String endDate) {
         // Create row's data:
         ContentValues initialValues = new ContentValues();
@@ -71,7 +69,7 @@ public class EventAdapter {
         initialValues.put(KEY_EVENTID, eventID);
         initialValues.put(KEY_ENDDATE, endDate);
 
-        // Insert it into the database.
+        // Insert it into the database
         return db.insert(DATABASE_TABLE, null, initialValues);
     }
 
