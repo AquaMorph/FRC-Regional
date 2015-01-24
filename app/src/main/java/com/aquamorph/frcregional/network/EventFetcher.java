@@ -21,13 +21,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public  class PostFetcher extends AsyncTask<Void, Void, String> {
+public  class EventFetcher extends AsyncTask<Void, Void, String> {
 
     EventAdapter myDB;
     private List<EventLists> eventListses;
     private Context mContext;
 
-    public PostFetcher(Context context) {
+    public EventFetcher(Context context) {
         mContext = context;
     }
 
@@ -63,7 +63,7 @@ public  class PostFetcher extends AsyncTask<Void, Void, String> {
 
             myDB.deleteAll();
 
-            for (EventLists eventLists : PostFetcher.this.eventListses) {
+            for (EventLists eventLists : EventFetcher.this.eventListses) {
                myDB.insertRow(eventLists.name, eventLists.event_code, eventLists.end_date);
             }
             myDB.close();

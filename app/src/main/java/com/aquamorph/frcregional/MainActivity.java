@@ -12,7 +12,7 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
 import com.aquamorph.frcregional.database.EventAdapter;
-import com.aquamorph.frcregional.network.PostFetcher;
+import com.aquamorph.frcregional.network.EventFetcher;
 
 
 public class MainActivity extends Activity {
@@ -24,7 +24,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        PostFetcher fetcher = new PostFetcher(this);
+        EventFetcher fetcher = new EventFetcher(this);
         fetcher.execute();
 
         Button button1 = (Button) findViewById(R.id.button);
