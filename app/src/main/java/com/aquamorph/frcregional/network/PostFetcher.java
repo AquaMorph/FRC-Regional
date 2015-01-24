@@ -58,15 +58,15 @@ public  class PostFetcher extends AsyncTask<Void, Void, String> {
                 e.printStackTrace();
             }
 
-            //myDB = new EventAdapter(mContext);
-            //myDB.open();
+            myDB = new EventAdapter(mContext);
+            myDB.open();
 
-            //myDB.deleteAll();
+            myDB.deleteAll();
 
             for (EventLists eventLists : PostFetcher.this.eventListses) {
-               //myDB.insertRow(eventLists.name, eventLists.event_code, eventLists.end_date);
+               myDB.insertRow(eventLists.name, eventLists.event_code, eventLists.end_date);
             }
-            //myDB.close();
+            myDB.close();
 
         }
         return null;

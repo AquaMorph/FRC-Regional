@@ -9,7 +9,7 @@ import android.util.Log;
 
 public class EventAdapter {
 
-    private static final String TAG = "DBAdapter";
+    private static final String TAG = "EventAdapter";
 
     // DB Fields
     public static final String KEY_ROWID = "_id";
@@ -21,9 +21,8 @@ public class EventAdapter {
     public static final String KEY_ENDDATE = "enddate";
 
     public static final int COL_NAME = 1;
-    public static final int COL_STUDENTNUM = 2;
-    public static final int COL_FAVCOLOUR = 3;
-    public static final int COL_ENDDATE = 4;
+    public static final int COL_EVENTID = 2;
+    public static final int COL_ENDDATE = 3;
 
 
     public static final String[] ALL_KEYS = new String[] {KEY_ROWID, KEY_NAME, KEY_EVENTID, KEY_ENDDATE};
@@ -32,14 +31,14 @@ public class EventAdapter {
     public static final String DATABASE_NAME = "FRCRegional";
     public static final String DATABASE_TABLE = "events";
     // Track DB version if a new version of your app changes the format.
-    public static final int DATABASE_VERSION = 7;
+    public static final int DATABASE_VERSION = 9;
 
     private static final String DATABASE_CREATE_SQL =
             "create table " + DATABASE_TABLE
                     + " (" + KEY_ROWID + " integer primary key autoincrement, "
                     + KEY_NAME + " text not null, "
                     + KEY_EVENTID + " string not null, "
-                    + KEY_ENDDATE + " string not null, "
+                    + KEY_ENDDATE + " string not null "
                     + ");";
 
     // Context of application who uses us.
