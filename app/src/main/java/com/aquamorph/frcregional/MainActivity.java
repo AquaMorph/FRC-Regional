@@ -61,8 +61,8 @@ public class MainActivity extends Activity {
         startManagingCursor(cursor);
 
         //Set up mapping cursor to view fields
-        String[] fromfieldName = new String[] {EventAdapter.KEY_NAME, EventAdapter.KEY_EVENTID};
-        int[] toviewIDs = new int[] {R.id.eventName,R.id.eventID};
+        String[] fromfieldName = new String[] {EventAdapter.KEY_NAME, EventAdapter.KEY_EVENTID, EventAdapter.KEY_ENDDATE};
+        int[] toviewIDs = new int[] {R.id.eventName,R.id.eventID,R.id.eventDate};
 
         //Create apter to map database listview
         SimpleCursorAdapter myCursorAdapter = new SimpleCursorAdapter(this,

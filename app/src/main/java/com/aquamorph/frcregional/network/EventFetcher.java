@@ -21,8 +21,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public  class EventFetcher extends AsyncTask<Void, Void, String> {
+public class EventFetcher extends AsyncTask<Void, Void, String> {
 
+    private String TAG = "EventFetcher";
     EventAdapter myDB;
     private List<EventLists> eventListses;
     private Context mContext;
@@ -64,7 +65,7 @@ public  class EventFetcher extends AsyncTask<Void, Void, String> {
             myDB.deleteAll();
 
             for (EventLists eventLists : EventFetcher.this.eventListses) {
-               myDB.insertRow(eventLists.name, eventLists.event_code, eventLists.end_date);
+                myDB.insertRow(eventLists.name, eventLists.event_code, eventLists.end_date);
             }
             myDB.close();
         }
