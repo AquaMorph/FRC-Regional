@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.aquamorph.frcregional.Constants;
+
 public class EventAdapter {
 
     private static final String TAG = "EventAdapter";
@@ -31,7 +33,7 @@ public class EventAdapter {
     // Set Database Info
     public static final String DATABASE_NAME  = "FRCRegional";
     public static final String DATABASE_TABLE = "events";
-    public static final int DATABASE_VERSION  = 9;
+    public static final int DATABASE_VERSION  = Constants.DATABASE_VERSION;
 
     private static final String DATABASE_CREATE_SQL =
             "create table " + DATABASE_TABLE
@@ -118,7 +120,7 @@ public class EventAdapter {
 
         // Create row's data:
         ContentValues newValues = new ContentValues();
-        newValues.put(KEY_NAME, name);
+        newValues.put(KEY_NAME,    name);
         newValues.put(KEY_EVENTID, eventID);
         newValues.put(KEY_ENDDATE, endDate);
 

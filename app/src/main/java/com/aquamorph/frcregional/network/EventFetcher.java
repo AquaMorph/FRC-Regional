@@ -67,7 +67,6 @@ public  class EventFetcher extends AsyncTask<Void, Void, String> {
                myDB.insertRow(eventLists.name, eventLists.event_code, eventLists.end_date);
             }
             myDB.close();
-
         }
         return null;
     }

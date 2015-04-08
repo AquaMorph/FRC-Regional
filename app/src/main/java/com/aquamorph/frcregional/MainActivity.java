@@ -14,7 +14,6 @@ import android.widget.SimpleCursorAdapter;
 import com.aquamorph.frcregional.database.EventAdapter;
 import com.aquamorph.frcregional.network.EventFetcher;
 
-
 public class MainActivity extends Activity {
 
     EventAdapter myDB;
@@ -62,8 +61,8 @@ public class MainActivity extends Activity {
         startManagingCursor(cursor);
 
         //Set up mapping cursor to view fields
-        String[] fromfieldName = new String[] {EventAdapter.KEY_NAME, EventAdapter.KEY_EVENTID, EventAdapter.KEY_ENDDATE};
-        int[] toviewIDs = new int[] {R.id.eventName,R.id.eventID,R.id.eventDate};
+        String[] fromfieldName = new String[] {EventAdapter.KEY_NAME, EventAdapter.KEY_EVENTID};
+        int[] toviewIDs = new int[] {R.id.eventName,R.id.eventID};
 
         //Create apter to map database listview
         SimpleCursorAdapter myCursorAdapter = new SimpleCursorAdapter(this,

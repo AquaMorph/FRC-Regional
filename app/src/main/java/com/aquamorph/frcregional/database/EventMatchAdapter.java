@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.aquamorph.frcregional.Constants;
+
 public class EventMatchAdapter {
     private static final String TAG = "EventMatchAdapter";
 
@@ -53,7 +55,7 @@ public class EventMatchAdapter {
     // Set Database Info
     public static final String DATABASE_NAME = "FRCRegional";
     public static final String DATABASE_TABLE = "eventMatches";
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = Constants.DATABASE_VERSION;
 
     private static final String DATABASE_CREATE_SQL =
             "create table " + DATABASE_TABLE
